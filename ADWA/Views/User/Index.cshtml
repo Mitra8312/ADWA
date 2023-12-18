@@ -1,0 +1,28 @@
+﻿@model List<ApplicationUser>
+
+@foreach (var user in Model)
+{
+    <div class="user-row">
+        <span>@user.Firstname</span>
+        <span>@user.LastName</span>
+        <span>@user.SamAccountName</span>
+        <span>@user.IsDialInEnabled</span>
+        <div class="toggle-button">
+            <input type="checkbox" id="toggle-@user.SamAccountName" @(user.IsDialInEnabled ? "checked" : "") />
+            <label for="toggle-@user.SamAccountName"></label>
+        </div>
+    </div>
+}
+
+@section scripts {
+    <script>
+        document.querySelectorAll('.toggle-button input').forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                var samAccountName = this.id.replace('toggle-', '');
+                // Выполните AJAX-запрос для изменения состояния Dial-in на сервере
+                // Например, отправьте запрос на UserController/DisableDialIn
+                console.log('Toggle state changed for user ' + samAccountName);
+            });
+        });
+    </script>
+}

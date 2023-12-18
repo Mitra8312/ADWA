@@ -1,0 +1,26 @@
+﻿<!-- Views\User\Index.cshtml -->
+@model List<System.DirectoryServices.AccountManagement.UserPrincipal>
+
+<h1>Users with Dial-In Enabled</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>SAM Account Name</th>
+            <th>Dial-In Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.GivenName</td>
+                <td>@user.Surname</td>
+                <td>@user.SamAccountName</td>
+                <td>Enabled</td>
+            </tr>
+        }
+    </tbody>
+</table>
