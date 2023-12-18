@@ -31,3 +31,7 @@ th, td {
     padding: 1.5em;
     text-align: center;
 }
+.table-row:hover {
+    
+    background-color:lightgreen;
+}
