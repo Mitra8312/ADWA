@@ -1,9 +1,14 @@
 using ADWA.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
+
 namespace ADWA.Controllers
 {
+    [Authorize]
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -12,9 +17,10 @@ namespace ADWA.Controllers
         {
             _logger = logger;
         }
-
+       
         public IActionResult Index()
         {
+
             return View();
         }
 

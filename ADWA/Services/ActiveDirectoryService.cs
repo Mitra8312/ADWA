@@ -123,5 +123,21 @@ public class ActiveDirectoryService
             throw;
         }
     }
+    public bool Authenticate(string username, string password)
+    {
+        try
+        {
+            // Use your logic to authenticate against Active Directory
+            // For example, you can use PrincipalContext.ValidateCredentials method
+
+            return _context.ValidateCredentials(username, password);
+        }
+        catch (Exception ex)
+        {
+            // Handle authentication failure or any exceptions
+            _logger.LogError($"Authentication failed: {ex.Message}");
+            return false;
+        }
+    }
 }
 

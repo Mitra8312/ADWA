@@ -2,15 +2,21 @@
 using ADWA.Models;
 using System.Diagnostics;
 using System.DirectoryServices;
+using System.Security.Principal;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ADWA.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public readonly ActiveDirectoryService _adService;
-        public UserController(ActiveDirectoryService adService)
+        public UserController(ActiveDirectoryService adService, IHttpContextAccessor httpContextAccessor)
         {
             _adService = adService;
+            _httpContextAccessor = httpContextAccessor;
         }
         [Route("/User/Error")]
         public IActionResult Error()
@@ -22,6 +28,7 @@ namespace ADWA.Controllers
             var usersWithDialIn = _adService.GetUsersWithDialInEnabled();
             return View(usersWithDialIn);
         }
+       
         public IActionResult Index()
         {
 
@@ -47,7 +54,26 @@ namespace ADWA.Controllers
                     SamAccountName = updatedUser.SamAccountName,
                     IsDialInEnabled = directoryEntry.Properties["msNPAllowDialin"].Value
                 }
-            }) ;
+            });
+        }
+        public IActionResult? CurrentUser ()
+        {
+            var windowsIdentity = _httpContextAccessor.HttpContext.User.Identity as WindowsIdentity;
+            try
+            {
+                // Log the user's identity
+                Console.WriteLine($"User: {windowsIdentity?.Name}");
+                return View(windowsIdentity);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return View("Error", ex);
+            }
+            
+            
         }
         
     }
