@@ -6,9 +6,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ADWA.Models;
+using ADWA.Db;
+using ADWA.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ContextDb>();
+builder.Services.AddScoped<UsrSvc>();
 //builder.Services.AddHttpContextAccessor();
 // Add services to the container.
 builder.Services.AddHttpContextAccessor();
