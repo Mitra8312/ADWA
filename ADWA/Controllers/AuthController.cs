@@ -16,13 +16,14 @@ namespace ADWA.Controllers
             _adService = adService;
 
         }
+
         public IActionResult Index()
         {
             return View();
         }
-        // Process login
-    [HttpPost]
-    public IActionResult Login(string username, string password)
+
+        [HttpPost]
+        public async Task<IActionResult> Login(string username, string password)
         {
             // Authenticate user against Active Directory
             if (_adService.Authenticate(username, password))
@@ -31,7 +32,6 @@ namespace ADWA.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, username),
-                    // Add other claims as needed
                 };
 
                 // Create ClaimsIdentity
@@ -44,17 +44,15 @@ namespace ADWA.Controllers
                 return RedirectToAction("Index", "User");
             }
 
-
-            // Authentication failed
             ViewBag.Error = "Invalid credentials";
-            return RedirectToAction("Error","Home");
+            return RedirectToAction("Error", "Home");
         }
-        // Logout
+
         public IActionResult Logout()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login", "Auth");
         }
-        
+
     }
 }

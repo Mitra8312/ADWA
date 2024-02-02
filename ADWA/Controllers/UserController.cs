@@ -1,80 +1,97 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ADWA.Models;
-using System.Diagnostics;
-using System.DirectoryServices;
-using System.Security.Principal;
-using Microsoft.Extensions.Logging;
+﻿using ADWA.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using System.Security.Principal;
 
 namespace ADWA.Controllers
 {
-    [Authorize]
-    public class UserController : Controller
-    {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        public readonly ActiveDirectoryService _adService;
-        public UserController(ActiveDirectoryService adService, IHttpContextAccessor httpContextAccessor)
-        {
-            _adService = adService;
-            _httpContextAccessor = httpContextAccessor;
-        }
-        [Route("/User/Error")]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-        public IActionResult DialIn()
-        {
-            var usersWithDialIn = _adService.GetUsersWithDialInEnabled();
-            return View(usersWithDialIn);
-        }
-       
-        public IActionResult Index()
-        {
+	[Authorize]
+	public class UserController(ActiveDirectoryService adService, IHttpContextAccessor httpContextAccessor) : Controller
+	{
+		private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
+		private readonly ActiveDirectoryService _adService = adService;
 
-            var users = _adService.GetUsers();
- 
-            return View(users);
-        }
-        [HttpPost]
-        public IActionResult DisableDialIn([FromBody] UpdateDialIn model)
-        {
-            
-             _adService.UpdateDialInStatus(model.SamAccountName, model.IsEnabled);
-            var updatedUser = _adService.GetUserByLogin(model.SamAccountName);
-            DirectoryEntry directoryEntry = (DirectoryEntry)updatedUser.GetUnderlyingObject();
-            // Обновляем значение свойства msNPAllowDialin
+		[Route("/User/Error")]
+		public IActionResult Error()
+		{
+			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
 
-            return Json(new
-            {
-                success = true,
-                message = "Dial-In state update successfully",
-                updatedData = new
-                {
-                    SamAccountName = updatedUser.SamAccountName,
-                    IsDialInEnabled = directoryEntry.Properties["msNPAllowDialin"].Value
-                }
-            });
-        }
-        public IActionResult? CurrentUser ()
-        {
-            var windowsIdentity = _httpContextAccessor.HttpContext.User.Identity as WindowsIdentity;
-            try
-            {
-                // Log the user's identity
-                Console.WriteLine($"User: {windowsIdentity?.Name}");
-                return View(windowsIdentity);
+		public IActionResult Index()
+		{
+			List<ApplicationUser> users = _adService.GetUsers();
+
+			return View();
+		}
+
+		public IActionResult NewUser()
+		{
+			List<OrganisationUnit> organisationUnits = _adService.GetOrganisationUnits();
+
+			return View(organisationUnits);
+		}
+
+		public IActionResult CreateUser([FromBody] ApplicationUser newUser)
+		{
+			try
+			{
+				if (_adService.CreateUser(newUser))
+				{
+					return Json(new
+					{
+						success = true,
+						message = "User created successfuly"
+					});
+				}
+				else
+				{
+					return Json(new
+					{
+						success = false,
+						message = "User created unsuccessfully"
+					});
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+				return Json(new
+				{
+					success = true,
+					message = ex.Message
+				});
+			}
+		}
+
+		//[HttpGet]
+		//public string GetUsers()
+		//{
+		//    //List<ApplicationUser> users = _adService.GetUsers();
+
+		//    List<OrganisationUnit> organisationUnits = _adService.GetOrganisationUnits();
+
+		//    //ViewBag.OrganisationUnits = 
+
+		//    return Newtonsoft.Json.JsonConvert.SerializeObject(organisationUnits);
+		//}
+
+		public IActionResult? CurrentUser()
+		{
+			WindowsIdentity? windowsIdentity = _httpContextAccessor.HttpContext.User.Identity as WindowsIdentity;
+			try
+			{
+				// Log the user's identity
+				Console.WriteLine($"User: {windowsIdentity?.Name}");
+				return View(windowsIdentity);
 
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-                return View("Error", ex);
-            }
-            
-            
-        }
-        
-    }
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("Error: " + ex.Message);
+				return View("Error", ex);
+			}
+		}
+	}
 }

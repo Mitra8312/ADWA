@@ -1,0 +1,59 @@
+﻿@model AutomaticRemoteAccessModel
+
+<div class="row">
+	<div class="col-sm-9">
+		<table>
+			<thead>
+				<tr>
+					<th>Логин</th>
+					<th>Статус VPN</th>
+					<th>Дата отключения</th>
+					<th>Отключить</th>
+					<th>Изменение</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var i in Model.UsersWithRA)
+				{
+				<tr>
+					<td>@i.GetSamAccountName()</td>
+					<td>@(i.GetIsDialInEnabled() ? "Активен" : "Выключен")</td>
+					<td>@(i.GetDateOfDisconnect() != null ? i.GetDateOfDisconnect() : "Нет даты")</td>
+					<td><a href="/RemoteAccess/DelUserToRA?SamAccountName=@i.GetSamAccountName()" class="btn btn-outline-danger">Отключить</a></td>
+					<td>
+						<a class="btn btn-outline-warning">Изменить</a>
+					</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="col-3">
+		<form class="FormDataARA" enctype="multipart/form-data">
+			<label>ЭКСПОРТ</label>
+			<input class="FormDataARA__inputFile" type="file" accept=".xlsx"/>
+			<button type="submit" class="btn btn-outline-primary">ЭКСПОРТ</button>
+		</form>
+	</div>
+</div>
+
+<form class="form__autoRA row">
+
+	<div class="col">
+		<select id="selectUser" class="form__select form-select form-select-sm" aria-label=".form-select-sm example">
+			@foreach(var i in Model.UsersWithoutRA)
+			{
+				<option value="@i.GetSamAccountName()">@i.GetSamAccountName()</option>
+			}
+		</select>
+	</div>
+
+	<div class="form__calendar col">
+		<input id="DateOfDisconnect" type="date" required/>
+	</div>
+
+	<div class="form__submit col">
+		<button id="saveChanges" type="sumbit" class="btn btn-outline-success">Save Changes</button>
+	</div>
+</form>
