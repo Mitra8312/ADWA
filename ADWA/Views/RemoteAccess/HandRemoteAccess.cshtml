@@ -1,0 +1,26 @@
+﻿
+<table id="td-users" class="user-row">
+	<thead>
+	<tr>
+		<th>Имя пользователя</th>
+		<th>Фамилия</th>
+		<th>Логин</th>
+		<th>Статус VPN</th>
+		<th>Активация</th>
+	</tr>
+	</thead>
+	<tbody>
+		@foreach (var user in Model)
+		{
+			<tr class="table-row">
+				<td >@user.GetGivenName()</td>
+				<td>@user.GetSurname()</td>
+				<td>@user.GetSamAccountName()</td>
+					<td data-status="@user.GetSamAccountName()">@(user.GetIsDialInEnabled() ? "Активен" : "Выключен")</td>
+				<td class="toggle-button">
+					<input type="checkbox" id="toggle-@user.GetSamAccountName()" @(user.GetIsDialInEnabled() ? "checked" : "") data-userid="@user.GetSamAccountName()" />
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
