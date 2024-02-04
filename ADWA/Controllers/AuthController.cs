@@ -41,11 +41,11 @@ namespace ADWA.Controllers
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
 
                 // Redirect to the home page or a specific URL
-                return RedirectToAction("Index", "User");
+                return RedirectToAction("VPN", "RemoteAccess");
             }
 
             ViewBag.Error = "Invalid credentials";
-            return RedirectToAction("Error", "Home");
+            return RedirectToAction("Error", "RemoteAccess");
         }
 
         public IActionResult Logout()

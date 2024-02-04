@@ -3,7 +3,10 @@ using ADWA.Models;
 using ADWA.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.DirectoryServices;
 
 namespace ADWA.Controllers
@@ -13,7 +16,7 @@ namespace ADWA.Controllers
 	{
 		private readonly ActiveDirectoryService _adService = adService;
 		private readonly DBContext _dbContext = new();
-		public IActionResult RemoteAccess()
+		public IActionResult VPN()
 		{
 			return View();
 		}
@@ -60,9 +63,9 @@ namespace ADWA.Controllers
 				userToAdd.SetDateOfDisconnect(user.DateOfDisconnect);
 
 				await _dbContext.Users.AddAsync(userToAdd);
-
 				await _dbContext.SaveChangesAsync();
 
+				
 				return Json(new
 				{
 					success = true
@@ -200,6 +203,10 @@ namespace ADWA.Controllers
 
 
 			return View();
+		}
+		public IActionResult Error()
+		{
+			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
 	}
 }

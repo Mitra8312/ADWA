@@ -26,7 +26,7 @@ WebApplication app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    _ = app.UseExceptionHandler("/Home/Error");
+    _ = app.UseExceptionHandler("/RemoteAccess/Error");
     _ = app.UseHsts();
 }
 
@@ -39,23 +39,8 @@ app.MapDefaultControllerRoute();
 app.MapControllerRoute(
     name: "auth",
     pattern: "Auth/{action=Login}/{id?}",
-    defaults: new { controller = "Auth" });
+    defaults: new { controller = "Auth" }
 
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapControllerRoute(
-//        name: "default",
-//        pattern: "{controller=User}/{action=Index}/{id?}");
-
-//    endpoints.MapControllerRoute(
-//        name: "login",
-//        pattern: "{controller=Auth}/{action=Index}/{id?}",
-//        controller: "Auth");
-
-//    endpoints.MapControllerRoute(
-//        name: "logout",
-//        pattern: "Auth/{action=Login}/{id?}",
-//        controller: "Auth");
-//});
+	);
 
 app.Run();

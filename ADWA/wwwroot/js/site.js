@@ -153,7 +153,6 @@ function updatePage(SamAccountName, IsDialInEnabled) {
     });
 }());
 
-
 /*
 
 let distinguishedName = '';
