@@ -149,16 +149,6 @@ public class ActiveDirectoryService
 			// Пользователь не найден
 			return false;
 		}
-		/*try
-		{
-			return _context.ValidateCredentials(username, password);
-		}
-		catch (Exception ex)
-		{
-			// Handle authentication failure or any exceptions
-			_logger.LogError($"Authentication failed: {ex.Message}");
-			return false;
-		}*/
 	}
 
 	/// <summary>
@@ -183,7 +173,6 @@ public class ActiveDirectoryService
 
 		return users;
 	}
-
 	/// <summary>
 	/// Получение пользователей без удаленного доступа
 	/// </summary>
@@ -199,7 +188,6 @@ public class ActiveDirectoryService
 				users.Add(user);
 			}
 		}
-
 		return users;
 	}
 }

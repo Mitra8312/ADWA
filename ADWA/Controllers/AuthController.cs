@@ -43,9 +43,9 @@ namespace ADWA.Controllers
                 // Redirect to the home page or a specific URL
                 return RedirectToAction("VPN", "RemoteAccess");
             }
-
-            ViewBag.Error = "Invalid credentials";
-            return RedirectToAction("Error", "RemoteAccess");
+            //RedirectToAction("Error", "RemoteAccess");
+            ViewBag.Error = "Неверный логин или пароль";
+            return View("Index");
         }
 
         public IActionResult Logout()

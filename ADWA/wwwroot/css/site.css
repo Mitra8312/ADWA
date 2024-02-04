@@ -77,3 +77,38 @@ th, td {
     background-color: #49b3dba3 !important;
     cursor: pointer;
 }
+#login-form {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+#login-form form {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    height: 50vh;
+}
+#login-form form input {
+    border: none;
+    border-bottom: 1px solid #b7b9b8 !important;
+    text-underline-offset: unset;
+    outline: none;
+    width: 45%;
+    margin-bottom: 7%;
+}
+    #login-form form button {
+        width: 45%;
+        height: 70px;
+        background: none;
+        border-radius: 12px;
+        border-color: #ebdc5648;
+    }
+    #login-form form button:hover {
+        background: #f2ff2f49 !important;
+    }
+
