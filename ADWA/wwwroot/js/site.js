@@ -39,11 +39,9 @@ $('.toggle-button input').each((i, checkbox) => {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    console.log(data)
-
+                    
                     updatePage(data.updatedData.samAccountName, data.updatedData.isDialInEnabled);
-
-                    console.log(data);
+ 
                 }
                 else {
                     console.error('Ошибка обновления состояния в контроллере пользователя')
@@ -99,8 +97,6 @@ function updatePage(SamAccountName, IsDialInEnabled) {
             proto[el.attr('id')] = el.val();
         });
 
-        console.log(proto);
-        
         fetch(url, {
             method: 'POST',
             headers: {
@@ -114,26 +110,20 @@ function updatePage(SamAccountName, IsDialInEnabled) {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    location.reload(true);
                     return data;
-                    console.log(2);
                 }
                 else {
                     return data;
-                    console.log(1);
                 }
             })
             .catch(error => ('Error:', error));
-
-        console.log(JSON.stringify({
-            DateOfDisconnect: proto.DateOfDisconnect,
-            selectUser: proto.selectUser
-        }));
 
         return false;
     });
 }());
 
-(function addNewUser() {
+/*(function addNewUser() {
     const url = '/User/CreateUser';
     $('#Form').on('submit', e => {
 
@@ -151,7 +141,7 @@ function updatePage(SamAccountName, IsDialInEnabled) {
 
         return false;
     });
-}());
+}());*/
 
 /*
 
