@@ -3,8 +3,8 @@
 @{
     ViewData["Title"] = "Авторизация";
 }
-<main id="login-form">
-<h1>Авторизация</h1>
+<section class="authside">
+    <img src="/img/authLogo.svg" alt="Breez" class="authside__logo">
 <form method="post" asp-action="Login">
    
     <input type="text" id="username" name="username" required placeholder="Логин"/>
@@ -17,4 +17,4 @@
     }
     <button type="submit">ВХОД</button>
 </form>
-</main>
+</section>

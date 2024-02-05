@@ -1,5 +1,6 @@
 html {
     font-size: 14px;
+    
 }
 
 @media (min-width: 768px) {
@@ -31,7 +32,11 @@ html {
 
 body {
     margin-bottom: 60px;
-    height:100vh;
+    height: 100vh;
+    
+}
+body, header {
+    background: #124e91 !important;
 }
 
 table {
@@ -77,38 +82,43 @@ th, td {
     background-color: #49b3dba3 !important;
     cursor: pointer;
 }
-#login-form {
+.authside {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
 }
-#login-form form {
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-    width: 50vw;
-    height: 50vh;
-}
-#login-form form input {
-    border: none;
-    border-bottom: 1px solid #b7b9b8 !important;
-    text-underline-offset: unset;
-    outline: none;
-    width: 45%;
-    margin-bottom: 7%;
-}
-    #login-form form button {
-        width: 45%;
-        height: 70px;
-        background: none;
-        border-radius: 12px;
-        border-color: #ebdc5648;
+    .authside form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50vw;
+        height: 50vh;
     }
-    #login-form form button:hover {
-        background: #f2ff2f49 !important;
-    }
+        .authside form input {
+            border: none;
+            border-bottom: 1px solid #b7b9b8 !important;
+            text-underline-offset: unset;
+            outline: none;
+            width: 45%;
+            margin-bottom: 7%;
+        }
+        .authside form button {
+            width: 45%;
+            height: 70px;
+            background: none;
+            border-radius: 12px;
+            border-color: #ebdc5648;
+        }
+.authside__logo {
+    display: block;
+    width: 36rem;
+    margin: 0 -2rem 2rem;
+}
+            .authside form button:hover {
+                background: #f2ff2f49 !important;
+            }
 

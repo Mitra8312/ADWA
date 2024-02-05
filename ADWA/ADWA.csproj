@@ -35,4 +35,8 @@
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\img\authLogo.svg" />
+  </ItemGroup>
+
 </Project>
