@@ -9,6 +9,61 @@ html {
     }
 }
 
+
+.FormDataARA__inputFile{
+    margin-bottom: 10px;
+}
+
+
+.FormDataARA {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.header {
+    margin-bottom: 40px;
+}
+
+.login__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+}
+
+.login-box {
+    border: 2px solid #ccc;
+    padding: 30px;
+    text-align: center;
+    width: 300px;
+    border-radius: 10px;
+}
+
+    .login__container input {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+
+    .login__container button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #124e91;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+
+        .login__container button:hover {
+            background-color: #1765bf;
+        }
+
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
@@ -18,7 +73,8 @@ html {
 }
 
 .form__autoRA{
-    padding-top: 7%;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 .form__calendar {
@@ -31,12 +87,20 @@ html {
 }
 
 body {
+<<<<<<< Updated upstream
     margin-bottom: 60px;
     height: 100vh;
     
 }
 body, header {
     background: #124e91 !important;
+=======
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+>>>>>>> Stashed changes
 }
 
 table {

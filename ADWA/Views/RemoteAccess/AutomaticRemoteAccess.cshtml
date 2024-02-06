@@ -1,7 +1,6 @@
 ﻿@model AutomaticRemoteAccessModel
 
 <div class="row">
-	<div class="col-sm-9">
 		<table>
 			<thead>
 				<tr>
@@ -21,21 +20,12 @@
 					<td>@(i.GetDateOfDisconnect() != null ? i.GetDateOfDisconnect() : "Нет даты")</td>
 					<td><a href="/RemoteAccess/DelUserToRA?SamAccountName=@i.GetSamAccountName()" class="btn btn-outline-danger">Отключить</a></td>
 					<td>
-						<a class="btn btn-outline-warning">Изменить</a>
+						<a id="changeRA" class="btn btn-outline-warning">Изменить</a>
 					</td>
 				</tr>
 				}
 			</tbody>
 		</table>
-	</div>
-
-	<div class="col-3">
-		<form class="FormDataARA" enctype="multipart/form-data">
-			<label>ЭКСПОРТ</label>
-			<input class="FormDataARA__inputFile" type="file" accept=".xlsx"/>
-			<button type="submit" class="btn btn-outline-primary">ЭКСПОРТ</button>
-		</form>
-	</div>
 </div>
 
 <form class="form__autoRA row">
@@ -54,6 +44,13 @@
 	</div>
 
 	<div class="form__submit col">
-		<button id="saveChanges" type="sumbit" class="btn btn-outline-success">Save Changes</button>
+		<button id="saveChanges" type="sumbit" class="btn btn-outline-success">Дать удаленный доступ</button>
 	</div>
 </form>
+
+<div class="row">
+	<form class="FormDataARA" enctype="multipart/form-data">
+		<input class="FormDataARA__inputFile" type="file" accept=".xlsx"/>
+		<button type="submit" class="btn btn-outline-primary">Импорт</button>
+	</form>
+</div>

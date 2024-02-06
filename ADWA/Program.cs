@@ -5,6 +5,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 //Запуск фонового процесса
 builder.Services.AddHostedService<DisconnectService>();
+builder.Services.AddHostedService<FileCleaner>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ActiveDirectoryService>();

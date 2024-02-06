@@ -1,5 +1,8 @@
-﻿@model string
+﻿
+<div class="login__container">
+	<div class="login-box">
 
+<<<<<<< Updated upstream
 @{
     ViewData["Title"] = "Авторизация";
 }
@@ -18,3 +21,19 @@
     <button type="submit">ВХОД</button>
 </form>
 </section>
+=======
+		<h2>Авторизация</h2>
+
+		<form method="post" asp-action="Login">
+			<label for="username">Логин</label>
+			<input type="text" id="username" name="username" required />
+		
+			<label for="password">Пароль</label>
+			<input type="password" id="password" name="password" required />
+		
+			<p>@ViewBag.Error</p>
+			<button type="submit">Авторизоваться</button>
+		</form>
+	</div>
+</div>
+>>>>>>> Stashed changes

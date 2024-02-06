@@ -156,8 +156,6 @@ namespace ADWA.Services
 					await _context.SaveChangesAsync();
 				}
 			}
-
-
 		}
 	}
 }

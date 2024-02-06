@@ -5,7 +5,7 @@
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            proto
+            jsonstr
         })
     })
         .then(response => response.json())
@@ -51,6 +51,9 @@ $('.toggle-button input').each((i, checkbox) => {
     })
 });
 
+(function changeRA() {
+    
+})();
 
 function updatePage(SamAccountName, IsDialInEnabled) {
 
@@ -59,7 +62,8 @@ function updatePage(SamAccountName, IsDialInEnabled) {
     $(`[data-status="${SamAccountName}"]`).text(IsDialInEnabled ? "Активен" : "Выключен");
 }
 
-(function SendFile() {
+
+(function sendFile() {
     const url = '/RemoteAccess/UploadFile';
     $('.FormDataARA').on('submit', function (e) {
         e.preventDefault();
@@ -112,14 +116,24 @@ function updatePage(SamAccountName, IsDialInEnabled) {
                 if (data.success) {
                     location.reload(true);
                     return data;
+<<<<<<< Updated upstream
+=======
+                    location.reload(true);
+>>>>>>> Stashed changes
                 }
                 else {
                     return data;
                 }
             })
+<<<<<<< Updated upstream
             .catch(error => ('Error:', error));
 
         return false;
+=======
+            .catch(error => {
+                'Error:', error;
+            });
+>>>>>>> Stashed changes
     });
 }());
 
