@@ -33,6 +33,7 @@ html {
 body {
     margin-bottom: 60px;
     height: 100vh;
+    overflow: hidden;
     
 }
 body, header {
@@ -55,16 +56,16 @@ th, td {
     background-color: lightgreen;
     cursor:pointer;
 }
-.menu-list {
+/*.menu-list {
     display: flex !important;
     justify-content: center;
     align-items:center;
     flex-direction:column !important;
     height: 100vh;
     
-}
+}*/
 
-.menu-link {
+/*.menu-link {
     display: flex !important;
     justify-content: center;
     text-align: center;
@@ -77,9 +78,9 @@ th, td {
     font-size: 2.5em;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-decoration: none;
-}
+}*/
 .menu-list a:hover {
-    background-color: #49b3dba3 !important;
+    background-color: #124e91 !important;
     cursor: pointer;
 }
 .authside {
@@ -90,35 +91,42 @@ th, td {
     width: 100%;
     height: 100vh;
 }
-    .authside form {
+    /*.authside form {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 50vw;
         height: 50vh;
-    }
+    }*/
         .authside form input {
-            border: none;
+            /*border: none;
             border-bottom: 1px solid #b7b9b8 !important;
             text-underline-offset: unset;
             outline: none;
-            width: 45%;
-            margin-bottom: 7%;
+            width: 35%;
+            margin-bottom: 7%;*/
         }
         .authside form button {
-            width: 45%;
-            height: 70px;
+            /*width: 41%;*/
+            /*height: 70px;
             background: none;
             border-radius: 12px;
-            border-color: #ebdc5648;
+            border-color: #ebdc5648;*/
         }
 .authside__logo {
     display: block;
     width: 36rem;
     margin: 0 -2rem 2rem;
 }
-            .authside form button:hover {
+           /* .authside form button:hover {
                 background: #f2ff2f49 !important;
-            }
-
+            }*/
+main {
+    height: 87vh;
+}
+footer {
+    height: 10vh;
+    text-align:center;
+    vertical-align:bottom
+}

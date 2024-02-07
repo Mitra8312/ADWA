@@ -5,16 +5,26 @@
 }
 <section class="authside">
     <img src="/img/authLogo.svg" alt="Breez" class="authside__logo">
+    <h1 class="h1 text-light mb-5">Управление VPN</h1>
 <form method="post" asp-action="Login">
-   
-    <input type="text" id="username" name="username" required placeholder="Логин"/>
-    <input type="password" id="password" name="password" required placeholder="Пароль"/>
+    <div class="col-auto">
+        <input type="text" class="form-control mb-3" id="username" name="username" required placeholder="Логин" />
+    </div>
+    <div class="col-auto">
+            <input type="password" class="form-control mb-3" id="password" name="password" required placeholder="Пароль" />
+    </div>
     @if (!string.IsNullOrEmpty(ViewBag.Error))
     {
         <div class="alert alert-danger" role="alert">
-            @ViewBag.Error
+                <b>@ViewBag.Error</b>
         </div>
+            <div class="alert alert-danger" role="alert">
+                <p>Проверьте, что вы состоите в группе: - <b>"adwa-users"</b></p>
+            </div>
     }
-    <button type="submit">ВХОД</button>
+        <div class="d-grid gap-2 col-6 mx-auto w-auto">
+        <button class="btn btn-primary" type="submit">Войти</button>
+        </div>
 </form>
+    
 </section>

@@ -1,6 +1,17 @@
-﻿<div class="row menu-list">
-
-	<a class="menu-link text-dark" asp-controller="RemoteAccess" asp-action="AutomaticRemoteAccess">Удаленный доступ</a>
-	<a class="menu-link text-dark" asp-controller="RemoteAccess" asp-action="HandRemoteAccess">Отключение/Включение удаленного доступа</a>
-		
+﻿
+<div class="list-group">
+    <a class="list-group-item list-group-item-action menu-link" asp-controller="RemoteAccess" asp-action="AutomaticRemoteAccess">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Удаленный доступ</h5>
+        </div>
+        <p class="mb-1">Управление списком доступа</p>
+        <small>Включеине/Отключение доступа, выдача доступа до указанной даты или выдача постоянного доступа</small>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Ручное управление доступом</h5>
+        </div>
+        <p class="mb-1">Управление состоянием доступа</p>
+        <small class="text-muted">Включеине/Отключение доступа</small>
+    </a>
 </div>
