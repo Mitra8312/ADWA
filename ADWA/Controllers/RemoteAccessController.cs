@@ -198,12 +198,30 @@ namespace ADWA.Controllers
 			}
 		}
 
-		public IActionResult SaveChangesRemoteAccess()
+		public async Task<IActionResult> SaveChangesRemoteAccess([FromBody] AddRA user)
 		{
+			try
+			{
+				ApplicationUser appUser = await _dbContext.Users.FirstAsync(u => u.GetSamAccountName().Equals(user.SelectUser));
 
+				appUser.SetDateOfDisconnect(user.DateOfDisconnect);
 
-			return View();
+				_dbContext.SaveChanges();
+
+				return Json(new
+				{
+					success = true,
+				});
+			}
+			catch
+			{
+				return Json(new
+				{
+					success = false,
+				});
+			}
 		}
+  
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
